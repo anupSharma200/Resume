@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Download, ExternalLink, Phone } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ExternalLink, Phone, Menu, X } from 'lucide-react';
 import { resumeData } from './data';
 import profileImage from './essets/image.jpeg';
 
 const Navbar = ({ activeSection, setActiveSection }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const navLinks = ['Home', 'Projects', 'About', 'Skills', 'Experience', 'Contact'];
 
   return (
-    <nav className="flex justify-between items-center py-6 px-10 border-b border-gray-800 bg-darkBg/90 backdrop-blur-md sticky top-0 z-50">
-      <div className="text-primaryBlue font-bold text-2xl tracking-tighter">ANUP.</div>
+    <nav className="flex justify-between items-center py-6 px-6 md:px-10 border-b border-gray-800 bg-darkBg/90 backdrop-blur-md sticky top-0 z-50">
+      <div className="text-primaryBlue font-bold text-2xl tracking-tighter z-50">ANUP.</div>
+      
+      {/* Desktop Menu */}
       <div className="hidden md:flex gap-8 text-sm font-medium">
         {navLinks.map((link) => (
           <button
@@ -22,9 +25,37 @@ const Navbar = ({ activeSection, setActiveSection }) => {
           </button>
         ))}
       </div>
-      <a href="https://drive.google.com/file/d/1mFLJ0QS9tBsr0rIcCWPSaf02WEGSOFkH/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="bg-primaryBlue text-white px-6 py-2 rounded-full font-medium hover:bg-blue-600 transition-colors inline-block">
-        Resume
-      </a>
+
+      <div className="flex items-center gap-4 z-50">
+        <a href="https://drive.google.com/file/d/1mFLJ0QS9tBsr0rIcCWPSaf02WEGSOFkH/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="bg-primaryBlue text-white px-5 md:px-6 py-2 rounded-full font-medium hover:bg-blue-600 transition-colors inline-block text-sm md:text-base">
+          Resume
+        </a>
+        
+        {/* Mobile Menu Toggle */}
+        <button className="md:hidden text-white hover:text-primaryBlue transition-colors" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 bg-[#0b1120] border-b border-gray-800 flex flex-col p-6 shadow-2xl md:hidden">
+          {navLinks.map((link) => (
+            <button
+              key={link}
+              onClick={() => {
+                setActiveSection(link);
+                setIsOpen(false);
+              }}
+              className={`py-4 text-left font-medium text-lg border-b border-gray-800/50 last:border-0 ${
+                activeSection === link ? 'text-primaryBlue' : 'text-textLight'
+              }`}
+            >
+              {link}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
