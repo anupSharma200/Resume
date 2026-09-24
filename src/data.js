@@ -43,16 +43,16 @@ export const resumeData = {
     }
   ],
   projects: [
-    { name: "Bhardwaj Hospital App", description: "Doctor appointment management platform." },
+    { name: "Bhardwaj Hospital App (Admin Panel & Mobile)", description: "Doctor appointment management platform." },
     { name: "SK Finance", description: "Loan application platform." },
-    { name: "Siyana", description: "E-commerce app." },
+    { name: "Siyana (Admin Panel & Mobile)", description: "E-commerce app." },
     { name: "Afrimart App (Live)", description: "Marketplace app." },
-    { name: "SagaAI", description: "AI-powered scheduling assistant." },
-    { name: "Plink App", description: "Multiplayer gaming application." },
+    { name: "SagaAI (Web & Mobile)", description: "AI-powered scheduling assistant." },
+    { name: "Plink App (Web & Mobile)", description: "Multiplayer gaming application." },
     { name: "Homard App", description: "NativeWind-based UI implementation." },
     { name: "Ringtone App", description: "Audio player with favorites functionality." },
-    { name: "Bulk Basket", description: "Wholesale ordering platform enabling companies and sellers to buy products in bulk quantities." },
-    { name: "BBI Management", description: "Warehouse management application for inventory and stock operations." },
-    { name: "BankEmi", description: "Loan and EMI management application." }
+    { name: "Bulk Basket (Web & Mobile)", description: "Wholesale ordering platform enabling companies and sellers to buy products in bulk quantities." },
+    { name: "BBI Management (Admin Panel & Mobile)", description: "Warehouse management application for inventory and stock operations." },
+    { name: "BankEmi (Web & Mobile)", description: "Loan and EMI management application." }
   ]
 };

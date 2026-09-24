@@ -63,21 +63,21 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 const Hero = ({ setActiveSection }) => {
   return (
     <div className="flex flex-col-reverse md:flex-row items-center justify-between py-20 px-10 max-w-6xl mx-auto min-h-[80vh]">
-      <div className="md:w-3/5 space-y-6 mt-10 md:mt-0">
+      <div className="md:w-3/5 space-y-6 mt-10 md:mt-0 text-center md:text-left flex flex-col items-center md:items-start">
         <div className="text-yellow-400 font-medium text-lg flex items-center gap-2">
           👋 Hello, I'm
         </div>
         <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
           {resumeData.name}
         </h1>
-        <h2 className="text-2xl text-primaryBlue font-semibold flex items-center">
+        <h2 className="text-2xl text-primaryBlue font-semibold flex items-center justify-center md:justify-start flex-wrap">
           {resumeData.title} <span className="animate-pulse ml-1">|</span>
         </h2>
         <p className="text-textMuted leading-relaxed max-w-xl text-lg">
           {resumeData.summary}
         </p>
         
-        <div className="flex gap-4 pt-4">
+        <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
           <button onClick={() => setActiveSection('Projects')} className="bg-primaryBlue text-white px-6 py-3 rounded-md font-medium hover:bg-blue-600 transition-colors">
             Explore Projects
           </button>
@@ -86,7 +86,7 @@ const Hero = ({ setActiveSection }) => {
           </a>
         </div>
 
-        <div className="flex gap-6 pt-6 text-textMuted">
+        <div className="flex justify-center md:justify-start gap-6 pt-6 text-textMuted">
           {/* <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
             <Github size={24} />
           </a> */}
@@ -194,7 +194,7 @@ const Experience = () => (
 
 const Projects = () => (
   <div className="py-20 px-10 max-w-6xl mx-auto min-h-[70vh]">
-    <SectionHeading title="Project Highlights" />
+    <SectionHeading title="Project Highlights (Website & Mobile Apps)" />
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {resumeData.projects.map((project, idx) => (
         <div key={idx} className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300">
