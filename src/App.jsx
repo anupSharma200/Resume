@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Download, ExternalLink, Phone, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ExternalLink, Phone, Menu, X, Youtube } from 'lucide-react';
 import { resumeData } from './data';
 import profileImage from './essets/image.jpeg';
 
@@ -27,7 +27,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       </div>
 
       <div className="flex items-center gap-4 z-50">
-        <a href="https://drive.google.com/file/d/1mFLJ0QS9tBsr0rIcCWPSaf02WEGSOFkH/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="bg-primaryBlue text-white px-5 md:px-6 py-2 rounded-full font-medium hover:bg-blue-600 transition-colors inline-block text-sm md:text-base">
+        <a href={resumeData.resumeUrl || "https://drive.google.com/file/d/1zFu0-3VVJg8ZgCzb313dK-3KjW1VUjcA/view?usp=sharing"} target="_blank" rel="noopener noreferrer" className="bg-primaryBlue text-white px-5 md:px-6 py-2 rounded-full font-medium hover:bg-blue-600 transition-colors inline-block text-sm md:text-base">
           Resume
         </a>
         
@@ -62,8 +62,8 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
 const Hero = ({ setActiveSection }) => {
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center justify-between py-20 px-10 max-w-6xl mx-auto min-h-[80vh]">
-      <div className="md:w-3/5 space-y-6 mt-10 md:mt-0 text-center md:text-left flex flex-col items-center md:items-start">
+    <div className="flex flex-col-reverse md:flex-row items-center justify-between py-16 px-6 md:px-10 max-w-6xl mx-auto min-h-[80vh]">
+      <div className="md:w-3/5 space-y-5 mt-10 md:mt-0 text-center md:text-left flex flex-col items-center md:items-start">
         <div className="text-yellow-400 font-medium text-lg flex items-center gap-2">
           👋 Hello, I'm
         </div>
@@ -73,27 +73,64 @@ const Hero = ({ setActiveSection }) => {
         <h2 className="text-2xl text-primaryBlue font-semibold flex items-center justify-center md:justify-start flex-wrap">
           {resumeData.title} <span className="animate-pulse ml-1">|</span>
         </h2>
-        <p className="text-textMuted leading-relaxed max-w-xl text-lg">
-          {resumeData.summary}
-        </p>
         
-        <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+        <div className="space-y-4 max-w-xl text-left">
+          <p className="text-textLight leading-relaxed text-base">
+            {resumeData.bio.intro}
+          </p>
+          <p className="text-textMuted leading-relaxed text-base">
+            {resumeData.bio.creator}
+          </p>
+          
+          <div className="bg-[#0b1120] border border-gray-800 rounded-xl p-3.5 text-sm">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="font-semibold text-white">My Official YouTube Channel:</span>
+              <a
+                href={resumeData.bio.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-red-500 hover:text-red-400 hover:underline inline-flex items-center gap-1 font-medium break-all"
+              >
+                {resumeData.bio.youtubeUrl}
+                <ExternalLink size={13} />
+              </a>
+            </div>
+          </div>
+
+          <div className="border-l-2 border-primaryBlue/70 pl-3.5 py-1 text-sm text-gray-300 leading-relaxed bg-gray-900/30 rounded-r-lg">
+            {resumeData.bio.callToAction}
+          </div>
+
+          <p className="text-sm italic text-gray-400">
+            {resumeData.bio.closing}
+          </p>
+        </div>
+        
+        <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-2">
           <button onClick={() => setActiveSection('Projects')} className="bg-primaryBlue text-white px-6 py-3 rounded-md font-medium hover:bg-blue-600 transition-colors">
             Explore Projects
           </button>
-          <a href="https://drive.google.com/file/d/1mFLJ0QS9tBsr0rIcCWPSaf02WEGSOFkH/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="border border-gray-600 text-textLight px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center gap-2">
+          <a href={resumeData.resumeUrl || "https://drive.google.com/file/d/1zFu0-3VVJg8ZgCzb313dK-3KjW1VUjcA/view?usp=sharing"} target="_blank" rel="noopener noreferrer" className="border border-gray-600 text-textLight px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center gap-2">
             Download Resume <Download size={18} />
+          </a>
+          <a href={resumeData.youtubeUrl} target="_blank" rel="noopener noreferrer" className="bg-red-600/90 hover:bg-red-600 text-white px-6 py-3 rounded-md font-medium transition-colors flex items-center gap-2 shadow-lg shadow-red-900/20">
+            <Youtube size={18} /> Watch on YouTube
           </a>
         </div>
 
-        <div className="flex justify-center md:justify-start gap-6 pt-6 text-textMuted">
-          {/* <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-            <Github size={24} />
-          </a> */}
-          <a href="https://www.linkedin.com/in/anup-sharma-898258183/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+        <div className="flex justify-center md:justify-start gap-6 pt-4 text-textMuted items-center">
+          {resumeData.contact.github && (
+            <a href={resumeData.contact.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="GitHub">
+              <Github size={24} />
+            </a>
+          )}
+          <a href={resumeData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="LinkedIn">
             <Linkedin size={24} />
           </a>
-          <a href="mailto:anupasharam12koa@gmail.com" className="hover:text-white transition-colors">
+          <a href={resumeData.youtubeUrl} target="_blank" rel="noopener noreferrer" className="hover:text-red-500 transition-colors" title="YouTube Channel">
+            <Youtube size={24} />
+          </a>
+          <a href={`mailto:${resumeData.contact.email}`} className="hover:text-white transition-colors" title="Email">
             <Mail size={24} />
           </a>
         </div>
@@ -146,11 +183,11 @@ const About = () => (
 );
 
 const Skills = () => (
-  <div className="py-20 px-10 max-w-5xl mx-auto min-h-[70vh]">
+  <div className="py-20 px-10 max-w-6xl mx-auto min-h-[70vh]">
     <SectionHeading title="Technical Skills" />
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {Object.entries(resumeData.skills).map(([category, skills]) => (
-        <div key={category} className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-colors">
+        <div key={category} className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-colors flex flex-col">
           <h4 className="text-xl font-semibold text-primaryBlue mb-4">{category}</h4>
           <div className="flex flex-wrap gap-2">
             {skills.map(skill => (
@@ -197,13 +234,25 @@ const Projects = () => (
     <SectionHeading title="Project Highlights (Website & Mobile Apps)" />
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {resumeData.projects.map((project, idx) => (
-        <div key={idx} className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300">
-          <div className="flex justify-between items-start mb-4">
-            <h4 className="text-xl font-bold text-white">{project.name}</h4>
-            <ExternalLink className="text-gray-500" size={20} />
+        <a
+          key={idx}
+          href={project.link || "https://github.com/anupSharma200"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:-translate-y-2 hover:border-primaryBlue/60 hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+        >
+          <div>
+            <div className="flex justify-between items-start mb-4 gap-2">
+              <h4 className="text-xl font-bold text-white group-hover:text-primaryBlue transition-colors">{project.name}</h4>
+              <ExternalLink className="text-gray-500 group-hover:text-primaryBlue group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-1" size={20} />
+            </div>
+            <p className="text-textMuted leading-relaxed">{project.description}</p>
           </div>
-          <p className="text-textMuted">{project.description}</p>
-        </div>
+          <div className="mt-4 pt-3 border-t border-gray-800/60 flex items-center text-sm font-medium text-primaryBlue gap-1">
+            <span>View Project</span>
+            <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </div>
+        </a>
       ))}
     </div>
   </div>
@@ -219,26 +268,40 @@ const Contact = () => (
       </p>
     </div>
     
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-      <a href="mailto:anupasharam12koa@gmail.com" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-6xl">
+      <a href={`mailto:${resumeData.contact.email}`} className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
         <Mail className="text-primaryBlue mb-4 group-hover:scale-110 transition-transform" size={32} />
         <h3 className="text-white font-semibold text-lg mb-2">Email</h3>
-        <p className="text-textMuted text-sm">anupasharam12koa@gmail.com</p>
+        <p className="text-textMuted text-sm break-all">{resumeData.contact.email}</p>
       </a>
       
-      <a href="tel:+917807924149" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
+      <a href={`tel:${resumeData.contact.phone.replace(/\s+/g, '')}`} className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
         <Phone className="text-primaryBlue mb-4 group-hover:scale-110 transition-transform" size={32} />
         <h3 className="text-white font-semibold text-lg mb-2">Phone</h3>
-        <p className="text-textMuted text-sm">+91 7807924149</p>
+        <p className="text-textMuted text-sm">{resumeData.contact.phone}</p>
       </a>
       
-      <a href="https://www.linkedin.com/in/anup-sharma-898258183/" target="_blank" rel="noopener noreferrer" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
+      <a href={resumeData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
         <Linkedin className="text-primaryBlue mb-4 group-hover:scale-110 transition-transform" size={32} />
         <h3 className="text-white font-semibold text-lg mb-2">LinkedIn</h3>
         <p className="text-textMuted text-sm">Visit Profile</p>
       </a>
-      
 
+      {resumeData.contact.youtube && (
+        <a href={resumeData.contact.youtube} target="_blank" rel="noopener noreferrer" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
+          <Youtube className="text-red-500 mb-4 group-hover:scale-110 transition-transform" size={32} />
+          <h3 className="text-white font-semibold text-lg mb-2">YouTube</h3>
+          <p className="text-textMuted text-sm">@sane004</p>
+        </a>
+      )}
+
+      {resumeData.contact.github && (
+        <a href={resumeData.contact.github} target="_blank" rel="noopener noreferrer" className="bg-[#0b1120] hover:bg-[#111a30] transition-colors p-8 rounded-2xl border border-gray-800/50 flex flex-col items-center justify-center text-center group cursor-pointer">
+          <Github className="text-primaryBlue mb-4 group-hover:scale-110 transition-transform" size={32} />
+          <h3 className="text-white font-semibold text-lg mb-2">GitHub</h3>
+          <p className="text-textMuted text-sm">Visit Profile</p>
+        </a>
+      )}
     </div>
   </div>
 );
