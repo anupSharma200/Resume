@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Download, ExternalLink, Phone, Menu, X, Youtube } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ExternalLink, Phone, Menu, X, Youtube, Smartphone, Globe, Server, Video, Sparkles } from 'lucide-react';
 import { resumeData } from './data';
 import profileImage from './essets/image.jpeg';
 
@@ -157,7 +157,7 @@ const SectionHeading = ({ title }) => (
 );
 
 const About = () => (
-  <div className="py-20 px-10 max-w-4xl mx-auto min-h-[70vh]">
+  <div className="py-16 md:py-20 px-4 sm:px-6 md:px-10 max-w-4xl mx-auto min-h-[70vh]">
     <SectionHeading title="About Me" />
     <div className="bg-cardBg p-8 rounded-2xl border border-gray-800 shadow-xl">
       <p className="text-textLight leading-relaxed text-lg mb-6">
@@ -182,41 +182,126 @@ const About = () => (
   </div>
 );
 
+const skillCategoryConfig = {
+  Mobile: {
+    icon: Smartphone,
+    color: 'text-blue-400',
+    borderColor: 'hover:border-blue-500/50',
+    bgBadge: 'bg-blue-500/10 border-blue-500/20 text-blue-300',
+    dotColor: 'bg-blue-400',
+    description: 'Android & iOS cross-platform development'
+  },
+  Web: {
+    icon: Globe,
+    color: 'text-cyan-400',
+    borderColor: 'hover:border-cyan-500/50',
+    bgBadge: 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300',
+    dotColor: 'bg-cyan-400',
+    description: 'Modern, responsive web applications'
+  },
+  Services: {
+    icon: Server,
+    color: 'text-indigo-400',
+    borderColor: 'hover:border-indigo-500/50',
+    bgBadge: 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300',
+    dotColor: 'bg-indigo-400',
+    description: 'APIs, state management, databases & backend'
+  },
+  'Content Creation': {
+    icon: Video,
+    color: 'text-rose-400',
+    borderColor: 'hover:border-rose-500/50',
+    bgBadge: 'bg-rose-500/10 border-rose-500/20 text-rose-300',
+    dotColor: 'bg-rose-400',
+    description: 'Video editing, channel growth & creative media'
+  }
+};
+
 const Skills = () => (
-  <div className="py-20 px-10 max-w-6xl mx-auto min-h-[70vh]">
+  <div className="py-16 md:py-20 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto min-h-[70vh]">
     <SectionHeading title="Technical Skills" />
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {Object.entries(resumeData.skills).map(([category, skills]) => (
-        <div key={category} className="bg-cardBg p-6 rounded-xl border border-gray-800 hover:border-gray-600 transition-colors flex flex-col">
-          <h4 className="text-xl font-semibold text-primaryBlue mb-4">{category}</h4>
-          <div className="flex flex-wrap gap-2">
-            {skills.map(skill => (
-              <span key={skill} className="bg-gray-800 text-gray-200 px-3 py-1 rounded-full text-sm">
-                {skill}
-              </span>
-            ))}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {Object.entries(resumeData.skills).map(([category, skills]) => {
+        const config = skillCategoryConfig[category] || {
+          icon: Sparkles,
+          color: 'text-primaryBlue',
+          borderColor: 'hover:border-primaryBlue/50',
+          bgBadge: 'bg-blue-500/10 border-blue-500/20 text-blue-300',
+          dotColor: 'bg-primaryBlue',
+          description: 'Core competencies'
+        };
+        const IconComponent = config.icon;
+
+        return (
+          <div
+            key={category}
+            className={`bg-cardBg p-6 sm:p-7 rounded-2xl border border-gray-800/80 ${config.borderColor} hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all duration-300 flex flex-col justify-between group`}
+          >
+            <div>
+              <div className="flex items-start justify-between gap-3 mb-5">
+                <div className="flex items-center gap-3.5">
+                  <div className={`p-2.5 rounded-xl border ${config.bgBadge} ${config.color} shadow-sm shrink-0`}>
+                    <IconComponent size={22} />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-white group-hover:text-primaryBlue transition-colors">
+                      {category}
+                    </h4>
+                    <p className="text-xs text-textMuted mt-0.5">{config.description}</p>
+                  </div>
+                </div>
+                <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${config.bgBadge} shrink-0`}>
+                  {skills.length} skills
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="bg-[#0b1120] hover:bg-[#131d35] text-gray-200 hover:text-white px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-medium border border-gray-800/90 hover:border-gray-700 transition-all duration-200 shadow-sm flex items-center gap-2 group/skill cursor-default"
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor} opacity-70 group-hover/skill:opacity-100 transition-opacity shrink-0`} />
+                    <span className="leading-tight">{skill}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 );
 
 const Experience = () => (
-  <div className="py-20 px-10 max-w-4xl mx-auto min-h-[70vh]">
+  <div className="py-16 md:py-20 px-4 sm:px-6 md:px-10 max-w-4xl mx-auto min-h-[70vh]">
     <SectionHeading title="Professional Experience" />
     <div className="space-y-8">
       {resumeData.experience.map((exp, idx) => (
         <div key={idx} className="bg-cardBg p-8 rounded-xl border border-gray-800 relative">
           <div className="absolute -left-3 top-8 w-6 h-6 bg-primaryBlue rounded-full border-4 border-darkBg hidden md:block"></div>
-          <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-3">
             <div>
               <h4 className="text-2xl font-bold text-white">{exp.role}</h4>
               <h5 className="text-primaryBlue font-medium text-lg">{exp.company}</h5>
             </div>
-            <span className="text-textMuted bg-gray-900 px-3 py-1 rounded-full text-sm mt-2 md:mt-0 whitespace-nowrap">
-              {exp.date}
-            </span>
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-textMuted bg-gray-900 px-3 py-1 rounded-full text-sm whitespace-nowrap">
+                {exp.date}
+              </span>
+              {exp.company === 'Independent / YouTube' && (
+                <a
+                  href={resumeData.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-red-600/90 hover:bg-red-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+                >
+                  <Youtube size={14} />
+                  YouTube
+                </a>
+              )}
+            </div>
           </div>
           <ul className="list-disc list-outside ml-5 space-y-2 text-textMuted">
             {exp.points.map((point, pIdx) => (
@@ -230,7 +315,7 @@ const Experience = () => (
 );
 
 const Projects = () => (
-  <div className="py-20 px-10 max-w-6xl mx-auto min-h-[70vh]">
+  <div className="py-16 md:py-20 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto min-h-[70vh]">
     <SectionHeading title="Project Highlights (Website & Mobile Apps)" />
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {resumeData.projects.map((project, idx) => (
@@ -259,7 +344,7 @@ const Projects = () => (
 );
 
 const Contact = () => (
-  <div className="py-24 px-10 max-w-6xl mx-auto min-h-[50vh] flex flex-col items-center justify-center">
+  <div className="py-16 md:py-24 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto min-h-[50vh] flex flex-col items-center justify-center">
     <div className="text-center mb-12">
       <h4 className="text-primaryBlue font-bold uppercase tracking-wider text-sm mb-3">CONTACT</h4>
       <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Let's Connect</h2>

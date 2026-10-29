@@ -13,7 +13,7 @@ export const resumeData = {
   },
   bio: {
     intro: "I am Anup Sharma, a React Native and React.js Developer with experience in developing mobile applications for Android and iOS, web applications using React.js, and backend services using Node.js and Express.js.",
-    creator: "I am also a content creator, and creating videos is one of my passions. I have experience in video editing, content creation, and managing a YouTube channel.",
+    creator: "I am also a content creator with hands-on experience in video editing, content creation, content writing, YouTube channel creation, and managing 3 YouTube channels.",
     youtubeUrl: "https://youtube.com/@sane004?si=55on3arPvY7UHmlz",
     callToAction: "Kindly schedule an interview for the Social Media Executive position or assign me a technical task to demonstrate my skills for the Application Developer role. I can provide an APK for Android devices and a Vercel link to my deployed website for your review.",
     closing: "Thank you for your time, consideration, and support. 🙏"
@@ -23,9 +23,19 @@ export const resumeData = {
     Mobile: ["React Native", "JavaScript", "TypeScript", "Android", "iOS"],
     Web: ["React.js", "Next.js", "JavaScript", "TypeScript"],
     Services: ["Redux", "Firebase", "REST API Integration", "SQLite", "Node.js", "Express.js", "Git"],
-    "Content Creation": ["Video Editing", "Content Creation", "Content Writing", "YouTube Channel Management"]
+    "Content Creation": ["Video Editing", "Content Creation", "Content Writing", "YouTube Channel Creation", "YouTube Channel Management for 3+ Channels", "Lyrics Writing", "Music Composition", "Direction"]
   },
   experience: [
+    {
+      role: "Content Creator | YouTube Channel Manager",
+      company: "Independent / YouTube",
+      date: "2021 – 2024",
+      points: [
+        "Managed multiple YouTube channels with a combined audience of over 3.5 lakh subscribers and optimized content strategy for audience growth.",
+        "Created engaging video content as a content creator, lyric writer, composer, and director for music and entertainment channels.",
+        "Planned scripts, production workflow, editing, publishing, and channel management to improve viewer engagement and content quality."
+      ]
+    },
     {
       role: "React Native Developer",
       company: "Freelance",
@@ -34,16 +44,6 @@ export const resumeData = {
         "Designed and developed multiple mobile apps end-to-end for varied client requirements.",
         "Implemented Redux for state management and integrated Firebase services (Auth, Firestore, Notifications).",
         "Built secure payment flows and responsive, high-performance interfaces across Android and iOS."
-      ]
-    },
-    {
-      role: "React Native Developer",
-      company: "Clikzop Innovation",
-      date: "Mar 5, 2026 – Aug 10, 2026",
-      points: [
-        "Developed and maintained cross-platform React Native applications for business and e-commerce workflows.",
-        "Integrated REST APIs, authentication, state management, and backend services to deliver reliable mobile features.",
-        "Collaborated with development teams to implement responsive UI, troubleshoot issues, and improve application performance."
       ]
     },
     {
